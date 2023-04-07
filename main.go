@@ -37,6 +37,13 @@ func main() {
 	for _, v := range files {
 		file := path.Join(githubWorkspace, v)
 		cuis_params = append(cuis_params, "-l", file)
+
+		stat, err := os.Stat(file)
+
+		if os.IsNotExist(err) || stat.IsDir() {
+			fmt.Println("No se ha podido encontrar el archivo en: ", file)
+			os.Exit(-2)
+		}
 	}
 	cuis_params = append(cuis_params, "-s", "/home/runTests.st")
 	cuis_params = append(cuis_params, strings.Split(testClasses, ",")...)
