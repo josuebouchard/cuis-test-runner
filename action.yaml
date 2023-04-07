@@ -1,0 +1,18 @@
+name: 'Smalltalk tests runner'
+description: 'Runs tests in smalltalk headless'
+inputs:
+  filepaths:
+    descriptions: 'Paths of st files to load. The one containing the test cases must be the last one. Can be multiple separated by commas.'
+    required: true
+  test-classes:
+    descriptions: 'The names of the classes whose tests must run. Can be multiple separated by commas.'
+    required: true
+outputs:
+  results:
+    description: 'The results of the test suite'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.filepaths }}
+    - ${{ inputs.test-classes }}
