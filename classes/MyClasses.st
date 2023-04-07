@@ -7,4 +7,4 @@ Object subclass: #CustomClass
 
 !CustomClass methodsFor: 'as yet unclassified' stamp: 'jb 4/5/2023 13:44:47'!
 example
-	^3.! !
+	^2.! !
