@@ -27,6 +27,10 @@ func main() {
 		os.Exit(-2)
 	}
 
+	cmd1 := exec.Command("ls", githubWorkspace)
+	output1, _ := cmd1.Output()
+	fmt.Println(string(output1))
+
 	cuis_params := []string{
 		"-vm-display-null", "-vm-sound-null",
 		"/home/linux64/CuisUniversity-5706.image", "-e",
