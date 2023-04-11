@@ -41,19 +41,25 @@ def main():
     cuis_params.extend(["-s", "/home/runTests.st"])
     cuis_params.extend(test_classes.split(","))
 
-    cmd = subprocess.run([
-        "/home/linux64/vm-jit/squeak",
-        *cuis_params
-    ], capture_output=True)
+    # Timeout in seconds
+    try:
+        cmd = subprocess.run([
+            "/home/linux64/vm-jit/squeak",
+            *cuis_params
+        ], capture_output=True, timeout=10)
+    except subprocess.TimeoutExpired:
+        print("""Ha ocurrido un error. Esto no significa necesariamente que tu codigo este mal.
+        Puede ser que se haya renombrado la clase de Tests o algun archivo. Por favor, avisale al equipo docente.""")
+        exit(3)
+    else:
+        output = cmd.stdout.decode("utf-8").strip()
+        parsed_output = parse_tests_output(output)
 
-    output = cmd.stdout.decode("utf-8").strip()
-    parsed_output = parse_tests_output(output)
+        print(parsed_output)
 
-    print(parsed_output)
-
-    if parsed_output['failed'] > 0 or parsed_output['errors'] > 0:
-        print("There are failed or errored tests")
-        exit(1)
+        if parsed_output['failed'] > 0 or parsed_output['errors'] > 0:
+            print("There are failed or errored tests")
+            exit(1)
 
 if __name__ == "__main__":
     main()
