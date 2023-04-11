@@ -1,4 +1,3 @@
-Utilities setAuthorName: 'algo3' initials: 'algo3'.
 stringTestClasses := Smalltalk startUpScriptArguments.
 
 testClasses := Smalltalk classes select: [:class | stringTestClasses includes: class asString].
@@ -16,6 +15,8 @@ testClasses do: [:testClass |
         ifFalse: [testClass addToSuiteFromSelectors: testSuite].
     ].
 suiteResults := testSuite run.
+
+Transcript show: suiteResults asString.
 
 stdout := StdIOWriteStream stdout.
 stdout nextPutAll: (suiteResults asString); newLine.

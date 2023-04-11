@@ -26,6 +26,8 @@ def main():
         "-vm-display-null", "-vm-sound-null",
         "/home/linux64/CuisUniversity-5706.image", "-e",
         "-d", "Utilities setAuthorName: 'algo3' initials: 'algo3'",
+        "-l", "InternalTools.st",
+        "-s", "loadFiles.st",
     ]
 
     for filepath in filepaths.split(","):
@@ -36,7 +38,7 @@ def main():
             print("No se pudo encontrar el archivo", str(file))
             exit(2)
 
-        cuis_params.extend(['-l', str(file.absolute())])
+        cuis_params.append(str(file.absolute()))
 
     cuis_params.extend(["-s", "/home/runTests.st"])
     cuis_params.extend(test_classes.split(","))
