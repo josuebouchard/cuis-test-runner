@@ -23,11 +23,12 @@ def main():
     test_classes = sys.argv[2]
 
     cuis_params = [
+        "/home/linux64/vm-jit/squeak",
         "-vm-display-null", "-vm-sound-null",
         "/home/linux64/CuisUniversity-5706.image", "-e",
         "-d", "Utilities setAuthorName: 'algo3' initials: 'algo3'",
-        "-l", "InternalTools.st",
-        "-s", "loadFiles.st",
+        "-l", "/home/InternalTools.st",
+        "-s", "/home/loadFiles.st",
     ]
 
     for filepath in filepaths.split(","):
@@ -45,10 +46,7 @@ def main():
 
     # Timeout in seconds
     try:
-        cmd = subprocess.run([
-            "/home/linux64/vm-jit/squeak",
-            *cuis_params
-        ], capture_output=True, timeout=10)
+        cmd = subprocess.run(cuis_params, capture_output=True, timeout=10)
     except subprocess.TimeoutExpired:
         print("""Ha ocurrido un error. Esto no significa necesariamente que tu codigo este mal.
         Puede ser que se haya renombrado la clase de Tests o algun archivo. Por favor, avisale al equipo docente.""")
