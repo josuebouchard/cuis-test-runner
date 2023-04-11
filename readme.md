@@ -6,8 +6,12 @@ This is a project intended to run automatically tests using a headless version o
 
 Building the image:
 
-`docker build . --tag smalltalk`
+```bash
+docker build . --tag smalltalk
+```
 
 Running the image:
 
-`docker run -it -v "./classes:/home/classes" -e 'GITHUB_WORKSPACE=/home/classes' smalltalk "./MyClasses.st,./MyTestClass.st" "ExampleTest"`
+```bash
+docker run -it -v "$(pwd)/classes:/home/classes" -e 'GITHUB_WORKSPACE=/home/classes' smalltalk "./MyClasses.st,./MyTestClass.st" "ExampleTest"
+```
