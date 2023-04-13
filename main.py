@@ -27,7 +27,6 @@ def main():
         "-vm-display-null", "-vm-sound-null",
         "/home/linux64/CuisUniversity-5706.image", "-e",
         "-d", "Utilities setAuthorName: 'algo3' initials: 'algo3'",
-        "-l", "/home/InternalTools.st",
         "-s", "/home/loadFiles.st",
     ]
 

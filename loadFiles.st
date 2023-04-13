@@ -1,2 +1,2 @@
-Smalltalk startUpScriptArguments do: [:fileName | 
-    (AutomatedCodeFile newFromFile: (fileName asFileEntry)) fileIn].
+Smalltalk startUpScriptArguments do: [:fileName |
+    ChangeSet fileIn: (fileName asFileEntry)].
